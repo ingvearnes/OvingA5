@@ -85,4 +85,10 @@ public class PlayingCard {
     hash = 31 * hash + getFace();
     return hash;
   }
+
+  @Override
+  public String toString(){
+    String suitName = String.valueOf(suit);
+    return suitName + " " + this.face + "\n";
+  }
 }
