@@ -15,7 +15,9 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -33,19 +35,27 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Group root = new Group();
-        Scene scene = new Scene(root,900,600, Color.BEIGE);
+        Scene scene = new Scene(root,900,600, Color.WHITE);
+
+        //Background
+        Rectangle background = new Rectangle(600,400);
+        background.setX(50);
+        background.setY(50);
+        background.setFill(Color.GRAY);
+        root.getChildren().add(background);
+
 
         //Card-deck
         Text cardDeckText = new Text();
-        cardDeckText.setX(400);
-        cardDeckText.setY(100);
+        cardDeckText.setX(225);
+        cardDeckText.setY(200);
         cardDeckText.setFont(Font.font("Verdana",25));
-        cardDeckText.setFill(Color.PURPLE);
+        cardDeckText.setFill(Color.WHITE);
         root.getChildren().add(cardDeckText);
 
         Button buttonDeal = new Button("Deal cards!");
-        buttonDeal.setLayoutX(400);
-        buttonDeal.setLayoutY(300);
+        buttonDeal.setLayoutX(700);
+        buttonDeal.setLayoutY(200);
         buttonDeal.setOnAction(event -> {
             Collection<PlayingCard> playingCards = deckOfCards.dealHand(5);
             String dealtCards = FXdealHand(playingCards);
@@ -60,36 +70,36 @@ public class HelloApplication extends Application {
 
         //analasys
         Text analFlush = new Text();
-        analFlush.setX(400);
-        analFlush.setY(150);
-        analFlush.setFont(Font.font("Verdana",25));
-        analFlush.setFill(Color.PURPLE);
+        analFlush.setX(100);
+        analFlush.setY(500);
+        analFlush.setFont(Font.font("Verdana",20));
+        analFlush.setFill(Color.BLACK);
         root.getChildren().add(analFlush);
 
         Text analQueen = new Text();
-        analQueen.setX(400);
-        analQueen.setY(200);
-        analQueen.setFont(Font.font("Verdana",25));
-        analQueen.setFill(Color.PURPLE);
+        analQueen.setX(300);
+        analQueen.setY(500);
+        analQueen.setFont(Font.font("Verdana",20));
+        analQueen.setFill(Color.BLACK);
         root.getChildren().add(analQueen);
 
         Text analHearts = new Text();
-        analHearts.setX(400);
-        analHearts.setY(250);
-        analHearts.setFont(Font.font("Verdana",25));
-        analHearts.setFill(Color.PURPLE);
+        analHearts.setX(100);
+        analHearts.setY(530);
+        analHearts.setFont(Font.font("Verdana",20));
+        analHearts.setFill(Color.BLACK);
         root.getChildren().add(analHearts);
 
         Text analSumFace = new Text();
-        analSumFace.setX(400);
-        analSumFace.setY(300);
-        analSumFace.setFont(Font.font("Verdana",25));
-        analSumFace.setFill(Color.PURPLE);
+        analSumFace.setX(300);
+        analSumFace.setY(530);
+        analSumFace.setFont(Font.font("Verdana",20));
+        analSumFace.setFill(Color.BLACK);
         root.getChildren().add(analSumFace);
 
         Button analyzeButton = new Button("Analyze the hand");
-        analyzeButton.setLayoutX(400);
-        analyzeButton.setLayoutY(350);
+        analyzeButton.setLayoutX(700);
+        analyzeButton.setLayoutY(250);
         analyzeButton.setOnAction(event -> {
             analFlush.setText(this.flush);
             analQueen.setText(this.queen);
