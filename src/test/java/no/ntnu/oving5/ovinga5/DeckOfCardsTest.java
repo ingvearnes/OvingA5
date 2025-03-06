@@ -16,14 +16,14 @@ class DeckOfCardsTest {
     DeckOfCards deckOfCards = new DeckOfCards();
     Collection<PlayingCard> deck = deckOfCards.dealHand(5);
     System.out.println(deck);
-    System.out.println(deckOfCards.checkCards(deck));
+    System.out.println(deckOfCards.checkFlush(deck));
   }
 
   @Test
-  void checkCheckCards(){
+  void checkCheckFlush(){
     DeckOfCards deckOfCards = new DeckOfCards();
     System.out.println(deckOfCards.getFullDeck());
-    System.out.println(deckOfCards.checkCards(deckOfCards.getFullDeck()));
+    System.out.println(deckOfCards.checkFlush(deckOfCards.getFullDeck()));
   }
 
 

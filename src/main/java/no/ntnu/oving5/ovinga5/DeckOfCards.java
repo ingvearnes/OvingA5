@@ -24,8 +24,7 @@ public class DeckOfCards {
 
   public Collection<PlayingCard> dealHand(int n){
     if(n < 1 || n > 52){
-      System.out.println("Amount of cards can not excel 52");
-      return new ArrayList<>();
+      throw new IllegalArgumentException("Can not excel past 52 or under 1");
     }
 
     Collection<PlayingCard> cardCollection = new ArrayList<>();
@@ -37,33 +36,47 @@ public class DeckOfCards {
     return cardCollection;
   }
 
-  public boolean checkCards(Collection<PlayingCard> cardCollection){
+  public String checkHearts(Collection<PlayingCard> cardCollection){
+    Collection<PlayingCard> hearts = new ArrayList<>();
+    for(PlayingCard card : cardCollection){
+      if(card.getSuit() == 'H'){
+        hearts.add(card);
+      }
+    }
+    return hearts.toString();
+  }
+
+  public boolean checkFlush(Collection<PlayingCard> cardCollection) {
     int flush1 = 0;
     int flush2 = 0;
     int flush3 = 0;
     int flush4 = 0;
     int flush5 = 0;
-    for(PlayingCard cardFlush : cardCollection){
-      if(cardFlush.getFace() == 1){
+    for (PlayingCard cardFlush : cardCollection) {
+      if (cardFlush.getFace() == 1) {
         flush1++;
       }
-      if(cardFlush.getFace() == 2){
+      if (cardFlush.getFace() == 2) {
         flush2++;
       }
-      if(cardFlush.getFace() == 3){
+      if (cardFlush.getFace() == 3) {
         flush3++;
       }
-      if(cardFlush.getFace() == 4){
+      if (cardFlush.getFace() == 4) {
         flush4++;
       }
-      if(cardFlush.getFace() == 5){
+      if (cardFlush.getFace() == 5) {
         flush5++;
       }
-      if(flush1 == 1 && flush2 == 1 && flush3 == 1 && flush4 == 1 && flush5 == 1){
+      if (flush1 == 1 && flush2 == 1 && flush3 == 1 && flush4 == 1 && flush5 == 1) {
         return true;
       }
     }
+    return false;
+  }
 
+
+  public boolean checkQueenOfCard(Collection<PlayingCard> cardCollection){
     int hearts = 0;
     int spades = 0;
     int diamond = 0;
@@ -86,6 +99,14 @@ public class DeckOfCards {
       }
     }
     return false;
+  }
+
+  public String stringSumFace(Collection<PlayingCard> cardCollection){
+    int sumFace = 0;
+    for(PlayingCard card : cardCollection){
+      sumFace += card.getFace();
+    }
+    return Integer.toString(sumFace);
   }
 
   public ArrayList<PlayingCard> getFullDeck(){

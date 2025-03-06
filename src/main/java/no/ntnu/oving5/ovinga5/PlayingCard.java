@@ -88,7 +88,7 @@ public class PlayingCard {
 
   @Override
   public String toString(){
-    String suitName = String.valueOf(suit);
-    return suitName + " " + this.face + "\n";
+    return this.suit +""+this.face;
   }
+
 }
