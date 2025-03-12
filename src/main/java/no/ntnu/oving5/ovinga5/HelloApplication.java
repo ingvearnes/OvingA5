@@ -10,11 +10,16 @@ Easiest way to add github for mac:
 6. git push -u origin main
  */
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -22,6 +27,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.util.Duration;
 
 public class HelloApplication extends Application {
 
@@ -46,24 +52,45 @@ public class HelloApplication extends Application {
 
 
         //Card-deck
-        Text cardDeckText = new Text("Cards Coming...");
-        cardDeckText.setX(225);
-        cardDeckText.setY(200);
-        cardDeckText.setFont(Font.font("Verdana",25));
-        cardDeckText.setFill(Color.WHITE);
-        root.getChildren().add(cardDeckText);
+//        Text cardDeckText = new Text("Cards Coming...");
+//        cardDeckText.setX(225);
+//        cardDeckText.setY(200);
+//        cardDeckText.setFont(Font.font("Verdana",25));
+//        cardDeckText.setFill(Color.WHITE);
+//        root.getChildren().add(cardDeckText);
 
         Button buttonDeal = new Button("Deal cards!");
         buttonDeal.setLayoutX(700);
         buttonDeal.setLayoutY(200);
         buttonDeal.setOnAction(event -> {
             Collection<PlayingCard> playingCards = deckOfCards.dealHand(5);
-            String dealtCards = FXdealHand(playingCards);
+            List<String> pathCard = FXdealHand(playingCards);
+
             this.flush = FXcheckFlush(playingCards);
             this.queen = FXcheckQueenOfCard(playingCards);
             this.hearts = deckOfCards.checkHearts(playingCards);
             this.sumCard = deckOfCards.stringSumFace(playingCards);
-            cardDeckText.setText(dealtCards);
+
+            for(int i = 0; i < pathCard.size(); i++){
+                String imagePath = pathCard.get(i);
+
+                //Image
+                Image image = new Image(imagePath);
+                ImageView imageView = new ImageView(image);
+                imageView.setFitWidth(70);
+                imageView.setFitHeight(100);
+                imageView.setX((200*i-(100*i))+100);
+                imageView.setY(200);
+                root.getChildren().add(imageView);
+
+                //Animation
+                TranslateTransition transition = new TranslateTransition();
+                transition.setNode(imageView);
+                transition.setDuration(Duration.seconds(1));
+                transition.setFromX(-600);
+                transition.setToX(27);
+                transition.play();
+            }
         });
         root.getChildren().add(buttonDeal);
 
@@ -137,14 +164,17 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public String FXdealHand(Collection<PlayingCard> playingCards){
-        StringBuilder text = new StringBuilder(); //ikke initialize noe med NULL, da får du nullpointerexeption
+    public List<String> FXdealHand(Collection<PlayingCard> playingCards){
+        List<String> paths = new ArrayList<>(); //ikke initialize noe med NULL, da får du nullpointerexeption
 
         for(PlayingCard card : playingCards){
-            text.append(card.getAsString()).append(" ");
+            String imagePath = card.generateCardImage(card.getSuit(), card.getFace());
+            paths.add(imagePath);
         }
-        return text.toString();
+        return paths;
     }
+
+
     public String FXcheckFlush(Collection<PlayingCard> playingCards){
         if(deckOfCards.checkFlush(playingCards)){
             return "Flush";

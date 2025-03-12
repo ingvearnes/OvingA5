@@ -41,24 +41,40 @@ public class PlayingCard {
 
   public String generateCardImage(char suit, int face){
     String suitString = "";
+    String faceString = "";
 
+    //SUIT
     if(suit == 'H'){
       suitString = "hearts";
     }
-    if(suit == 'D'){
+    else if(suit == 'D'){
       suitString = "diamonds";
     }
-    if(suit == 'C'){
+    else if(suit == 'C'){
       suitString = "clubs";
     }
-    if(suit == 'S'){
+    else if(suit == 'S'){
       suitString = "spades";
     }
-    return face+"_of_"+suitString+".png";
-  }
 
-  public String getPathCard(){
-    return this.pathCard;
+    //FACE
+    if(face == 11){
+      faceString = "jack";
+    }
+    else if(face == 12){
+      faceString = "queen";
+    }
+    else if(face == 13){
+      faceString = "king";
+    }
+    else if(face == 1){
+      faceString = "ace";
+    }
+    else{
+      faceString = Integer.toString(face);
+    }
+
+    return faceString+"_of_"+suitString+".png";
   }
 
 
