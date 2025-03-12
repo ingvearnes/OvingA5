@@ -10,6 +10,7 @@ public class PlayingCard {
 
   private final char suit; // 'S'=spade, 'H'=heart, 'D'=diamonds, 'C'=clubs
   private final int face; // a number between 1 and 13
+  private final String pathCard;
 
   /**
    * Creates an instance of a PlayingCard with a given suit and face.
@@ -35,7 +36,31 @@ public class PlayingCard {
 
     this.suit = suit;
     this.face = face;
+    this.pathCard = generateCardImage(suit,face);
   }
+
+  public String generateCardImage(char suit, int face){
+    String suitString = "";
+
+    if(suit == 'H'){
+      suitString = "hearts";
+    }
+    if(suit == 'D'){
+      suitString = "diamonds";
+    }
+    if(suit == 'C'){
+      suitString = "clubs";
+    }
+    if(suit == 'S'){
+      suitString = "spades";
+    }
+    return face+"_of_"+suitString+".png";
+  }
+
+  public String getPathCard(){
+    return this.pathCard;
+  }
+
 
   /**
    * Returns the suit and face of the card as a string.

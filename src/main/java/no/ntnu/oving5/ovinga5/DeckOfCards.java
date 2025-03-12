@@ -3,12 +3,14 @@ package no.ntnu.oving5.ovinga5;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class DeckOfCards {
 
   private final char[] suit = {'S','H','D','C'};
   private final int[] rank = {1,2,3,4,5,6,7,8,9,10,11,12,13};
   private ArrayList<PlayingCard> fullDeck;
+  private ArrayList<PlayingCard> playedCards = new ArrayList<>();
 
   public DeckOfCards(){
     fullDeck = new ArrayList<>();
@@ -26,23 +28,29 @@ public class DeckOfCards {
     if(n < 1 || n > 52){
       throw new IllegalArgumentException("Can not excel past 52 or under 1");
     }
-
-    Collection<PlayingCard> cardCollection = new ArrayList<>();
     Random random = new Random();
-    for (int i = 0; i < n; i++) {
-      int randInt = random.nextInt(52); //random integer from range
-      cardCollection.add(fullDeck.get(randInt));
+    Collection<PlayingCard> dealHand = new ArrayList<>();
+
+    while(dealHand.size() < n){
+      if(fullDeck.isEmpty()){
+        break;
+      }
+      int cardIndex = random.nextInt(fullDeck.size());
+      PlayingCard card = fullDeck.get(cardIndex);
+
+      if(!playedCards.contains(card)){
+        dealHand.add(card);
+        playedCards.add(card);
+        fullDeck.remove(card);
+      }
     }
-    return cardCollection;
+    return dealHand;
   }
 
   public String checkHearts(Collection<PlayingCard> cardCollection){
-    Collection<PlayingCard> hearts = new ArrayList<>();
-    for(PlayingCard card : cardCollection){
-      if(card.getSuit() == 'H'){
-        hearts.add(card);
-      }
-    }
+    Collection<PlayingCard> hearts = cardCollection.stream()
+        .filter(card -> card.getSuit() == 'H')
+        .toList();
     return hearts.toString();
   }
 

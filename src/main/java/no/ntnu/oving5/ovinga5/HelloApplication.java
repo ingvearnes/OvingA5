@@ -15,7 +15,6 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -29,24 +28,25 @@ public class HelloApplication extends Application {
     private DeckOfCards deckOfCards = new DeckOfCards();
     private String flush;
     private String queen;
-    String hearts;
+    private String hearts;
     private String sumCard;
 
     @Override
     public void start(Stage stage) throws IOException {
         Group root = new Group();
-        Scene scene = new Scene(root,900,600, Color.WHITE);
+        Scene scene = new Scene(root,900,600, Color.LIGHTBLUE);
+        stage.setTitle("Cardgame");
 
         //Background
         Rectangle background = new Rectangle(600,400);
         background.setX(50);
         background.setY(50);
-        background.setFill(Color.GRAY);
+        background.setFill(Color.BLACK);
         root.getChildren().add(background);
 
 
         //Card-deck
-        Text cardDeckText = new Text();
+        Text cardDeckText = new Text("Cards Coming...");
         cardDeckText.setX(225);
         cardDeckText.setY(200);
         cardDeckText.setFont(Font.font("Verdana",25));
@@ -69,31 +69,55 @@ public class HelloApplication extends Application {
 
 
         //analasys
-        Text analFlush = new Text();
+        Text textAnalFlush = new Text("Flush: ");
+        textAnalFlush.setX(40);
+        textAnalFlush.setY(500);
+        textAnalFlush.setFont(Font.font("Verdana",15));
+        textAnalFlush.setFill(Color.BLACK);
+        root.getChildren().add(textAnalFlush);
+        Text analFlush = new Text("Flush");
         analFlush.setX(100);
         analFlush.setY(500);
-        analFlush.setFont(Font.font("Verdana",20));
+        analFlush.setFont(Font.font("Verdana",15));
         analFlush.setFill(Color.BLACK);
         root.getChildren().add(analFlush);
 
-        Text analQueen = new Text();
-        analQueen.setX(300);
+        Text textAnalQueen = new Text("Queen of Cards:");
+        textAnalQueen.setX(300);
+        textAnalQueen.setY(500);
+        textAnalQueen.setFont(Font.font("Verdana",15));
+        textAnalQueen.setFill(Color.BLACK);
+        root.getChildren().add(textAnalQueen);
+        Text analQueen = new Text("Queen of Cards");
+        analQueen.setX(430);
         analQueen.setY(500);
-        analQueen.setFont(Font.font("Verdana",20));
+        analQueen.setFont(Font.font("Verdana",15));
         analQueen.setFill(Color.BLACK);
         root.getChildren().add(analQueen);
 
-        Text analHearts = new Text();
+        Text textAnalHearts = new Text("Hearts:");
+        textAnalHearts.setX(40);
+        textAnalHearts.setY(530);
+        textAnalHearts.setFont(Font.font("Verdana",15));
+        textAnalHearts.setFill(Color.BLACK);
+        root.getChildren().add(textAnalHearts);
+        Text analHearts = new Text("Hearts");
         analHearts.setX(100);
         analHearts.setY(530);
-        analHearts.setFont(Font.font("Verdana",20));
+        analHearts.setFont(Font.font("Verdana",15));
         analHearts.setFill(Color.BLACK);
         root.getChildren().add(analHearts);
 
-        Text analSumFace = new Text();
-        analSumFace.setX(300);
+        Text textAnalSumFace = new Text("Sum of faces: ");
+        textAnalSumFace.setX(300);
+        textAnalSumFace.setY(530);
+        textAnalSumFace.setFont(Font.font("Verdana",15));
+        textAnalSumFace.setFill(Color.BLACK);
+        root.getChildren().add(textAnalSumFace);
+        Text analSumFace = new Text("Sum");
+        analSumFace.setX(415);
         analSumFace.setY(530);
-        analSumFace.setFont(Font.font("Verdana",20));
+        analSumFace.setFont(Font.font("Verdana",15));
         analSumFace.setFill(Color.BLACK);
         root.getChildren().add(analSumFace);
 
