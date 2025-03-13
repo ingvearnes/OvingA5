@@ -88,7 +88,7 @@ public class HelloApplication extends Application {
                 transition.setNode(imageView);
                 transition.setDuration(Duration.seconds(1));
                 transition.setFromX(-600);
-                transition.setToX(27);
+                transition.setToX(20);
                 transition.play();
             }
         });

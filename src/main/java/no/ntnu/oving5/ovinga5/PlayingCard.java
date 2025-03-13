@@ -39,6 +39,12 @@ public class PlayingCard {
     this.pathCard = generateCardImage(suit,face);
   }
 
+  /**
+   * Method that return a string of the file path of the card-image with the associated card
+   * @param suit Heart, Diamond, Clubs, Spades
+   * @param face Number from 1 to 13
+   * @return file-path of .png
+   */
   public String generateCardImage(char suit, int face){
     String suitString = "";
     String faceString = "";

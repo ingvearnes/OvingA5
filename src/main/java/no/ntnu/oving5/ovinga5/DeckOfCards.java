@@ -2,6 +2,7 @@ package no.ntnu.oving5.ovinga5;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,9 @@ public class DeckOfCards {
   private ArrayList<PlayingCard> fullDeck;
   private ArrayList<PlayingCard> playedCards = new ArrayList<>();
 
+  /**
+   * Constructor of class. Puts in all Cards into fullDeck.
+   */
   public DeckOfCards(){
     fullDeck = new ArrayList<>();
 
@@ -24,6 +28,11 @@ public class DeckOfCards {
 
   }
 
+  /**
+   * Method that deals out the card-hand.
+   * @param n Amount of cards that is to be given out
+   * @return the dealhand of cards
+   */
   public Collection<PlayingCard> dealHand(int n){
     if(n < 1 || n > 52){
       throw new IllegalArgumentException("Can not excel past 52 or under 1");
@@ -47,6 +56,11 @@ public class DeckOfCards {
     return dealHand;
   }
 
+  /**
+   *
+   * @param cardCollection
+   * @return
+   */
   public String checkHearts(Collection<PlayingCard> cardCollection){
     Collection<PlayingCard> hearts = cardCollection.stream()
         .filter(card -> card.getSuit() == 'H')
@@ -55,32 +69,15 @@ public class DeckOfCards {
   }
 
   public boolean checkFlush(Collection<PlayingCard> cardCollection) {
-    int flush1 = 0;
-    int flush2 = 0;
-    int flush3 = 0;
-    int flush4 = 0;
-    int flush5 = 0;
-    for (PlayingCard cardFlush : cardCollection) {
-      if (cardFlush.getFace() == 1) {
-        flush1++;
-      }
-      if (cardFlush.getFace() == 2) {
-        flush2++;
-      }
-      if (cardFlush.getFace() == 3) {
-        flush3++;
-      }
-      if (cardFlush.getFace() == 4) {
-        flush4++;
-      }
-      if (cardFlush.getFace() == 5) {
-        flush5++;
-      }
-      if (flush1 == 1 && flush2 == 1 && flush3 == 1 && flush4 == 1 && flush5 == 1) {
-        return true;
-      }
-    }
-    return false;
+    //AI-based
+    Map<Integer,Long> faceCount = cardCollection.stream()
+        .collect(Collectors.groupingBy(PlayingCard::getFace, Collectors.counting()));
+
+    return faceCount.getOrDefault(1,0L) == 1 &&
+           faceCount.getOrDefault(2,0L) == 1 &&
+           faceCount.getOrDefault(3,0L) == 1 &&
+           faceCount.getOrDefault(4,0L) == 1 &&
+           faceCount.getOrDefault(5,0L) == 1;
   }
 
 
