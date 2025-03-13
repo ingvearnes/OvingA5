@@ -37,6 +37,9 @@ public class HelloApplication extends Application {
     private String hearts;
     private String sumCard;
 
+    /**
+     * Method that sets up and runs the javaFX
+     */
     @Override
     public void start(Stage stage) throws IOException {
         Group root = new Group();
@@ -164,6 +167,12 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
+    /**
+     * Method that takes in a collection of cards and generates the path of the associated
+     * .png from the generateCardImage() method. Must use for-loop later to get each path.
+     * @param playingCards collection of playing cards
+     * @return list of filepath of card-png
+     */
     public List<String> FXdealHand(Collection<PlayingCard> playingCards){
         List<String> paths = new ArrayList<>(); //ikke initialize noe med NULL, da får du nullpointerexeption
 
@@ -175,12 +184,24 @@ public class HelloApplication extends Application {
     }
 
 
+    /**
+     * Method that checks if the cards collectively gives flush, i.e is 1 to 5.
+     * @param playingCards Collection of playing cards
+     * @return string for flush or not flush
+     */
     public String FXcheckFlush(Collection<PlayingCard> playingCards){
         if(deckOfCards.checkFlush(playingCards)){
             return "Flush";
         }
         return "No flush";
     }
+
+    /**
+     * Method that checks if the cards gives queen of something. I.e. 5 of one of the picture
+     * cards.
+     * @param playingCards collection of playing cards.
+     * @return string for queen or no queen of something.
+     */
     public String FXcheckQueenOfCard(Collection<PlayingCard> playingCards){
         if(deckOfCards.checkQueenOfCard(playingCards)){
             return "Queen of something";
@@ -188,6 +209,9 @@ public class HelloApplication extends Application {
         return "No Queen";
     }
 
+    /**
+     * Main method to start javaFX.
+     */
     public static void main(String[] args) {
         launch();
     }

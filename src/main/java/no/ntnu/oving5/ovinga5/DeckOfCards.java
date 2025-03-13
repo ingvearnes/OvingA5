@@ -6,6 +6,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+/**
+ * Represents a deck of different cards.
+ */
 public class DeckOfCards {
 
   private final char[] suit = {'S','H','D','C'};
@@ -14,7 +17,8 @@ public class DeckOfCards {
   private ArrayList<PlayingCard> playedCards = new ArrayList<>();
 
   /**
-   * Constructor of class. Puts in all Cards into fullDeck.
+   * Constructor of class. Initializes the deck of cards by adding a full set of 52 cards.
+   * Each card is represented by a combination of suit (Spades, Hearts, Diamonds, Clubs) and rank (1-13).
    */
   public DeckOfCards(){
     fullDeck = new ArrayList<>();
@@ -25,13 +29,16 @@ public class DeckOfCards {
         fullDeck.add(playingCard);
       }
     }
-
   }
 
   /**
-   * Method that deals out the card-hand.
-   * @param n Amount of cards that is to be given out
-   * @return the dealhand of cards
+   * Method that deals out a hand of cards.
+   * It randomly selects cards from the fullDeck, ensures no card is dealt more than once,
+   * and adds it to the dealt hand until the specified number of cards is dealt.
+   *
+   * @param n the number of cards to deal.
+   * @return a collection of PlayingCard objects representing the dealt hand.
+   * @throws IllegalArgumentException if the number of cards to deal is less than 1 or greater than 52.
    */
   public Collection<PlayingCard> dealHand(int n){
     if(n < 1 || n > 52){
@@ -57,9 +64,11 @@ public class DeckOfCards {
   }
 
   /**
+   * Method to check and return all the hearts cards present in the given hand.
+   * It filters the cards to only include hearts and returns them as a string.
    *
-   * @param cardCollection
-   * @return
+   * @param cardCollection the collection of cards to check.
+   * @return a string representation of the cards that are hearts.
    */
   public String checkHearts(Collection<PlayingCard> cardCollection){
     Collection<PlayingCard> hearts = cardCollection.stream()
@@ -68,19 +77,33 @@ public class DeckOfCards {
     return hearts.toString();
   }
 
+  /**
+   * Method to check if the given hand contains a flush, which is a set of five cards
+   * that each have a different face value from 1 to 5.
+   * This method uses an AI-based approach to check if the hand has a sequence of 5 different face values.
+   *
+   * @param cardCollection the collection of cards to check.
+   * @return true if the hand is a flush, otherwise false.
+   */
   public boolean checkFlush(Collection<PlayingCard> cardCollection) {
-    //AI-based
+    // AI-based check for a flush (5 consecutive face values: 1, 2, 3, 4, 5)
     Map<Integer,Long> faceCount = cardCollection.stream()
         .collect(Collectors.groupingBy(PlayingCard::getFace, Collectors.counting()));
 
     return faceCount.getOrDefault(1,0L) == 1 &&
-           faceCount.getOrDefault(2,0L) == 1 &&
-           faceCount.getOrDefault(3,0L) == 1 &&
-           faceCount.getOrDefault(4,0L) == 1 &&
-           faceCount.getOrDefault(5,0L) == 1;
+        faceCount.getOrDefault(2,0L) == 1 &&
+        faceCount.getOrDefault(3,0L) == 1 &&
+        faceCount.getOrDefault(4,0L) == 1 &&
+        faceCount.getOrDefault(5,0L) == 1;
   }
 
-
+  /**
+   * Method to check if a hand contains five cards from the same suit.
+   * This checks if there are five hearts, spades, diamonds, or clubs in the collection of cards.
+   *
+   * @param cardCollection the collection of cards to check.
+   * @return true if the hand contains five cards of the same suit, otherwise false.
+   */
   public boolean checkQueenOfCard(Collection<PlayingCard> cardCollection){
     int hearts = 0;
     int spades = 0;
@@ -89,23 +112,25 @@ public class DeckOfCards {
     for(PlayingCard card : cardCollection){
       if(card.getSuit() == 'H'){
         hearts++;
-      }
-      if(card.getSuit() == 'S'){
+      } if(card.getSuit() == 'S'){
         spades++;
-      }
-      if(card.getSuit() == 'D'){
+      } if(card.getSuit() == 'D'){
         diamond++;
-      }
-      if(card.getSuit() == 'C'){
+      } if(card.getSuit() == 'C'){
         clubs++;
-      }
-      if(hearts == 5 || spades == 5 || diamond == 5 || clubs == 5){
+      } if(hearts == 5 || spades == 5 || diamond == 5 || clubs == 5){
         return true;
       }
-    }
-    return false;
+    } return false;
   }
 
+  /**
+   * Method to calculate the sum of the face values of the cards in the given hand.
+   * The face values of cards are added together and the sum is returned as a string.
+   *
+   * @param cardCollection the collection of cards to sum.
+   * @return a string representation of the sum of the face values of the cards in the collection.
+   */
   public String stringSumFace(Collection<PlayingCard> cardCollection){
     int sumFace = 0;
     for(PlayingCard card : cardCollection){
@@ -114,8 +139,12 @@ public class DeckOfCards {
     return Integer.toString(sumFace);
   }
 
+  /**
+   * Getter method to retrieve the full deck of cards.
+   *
+   * @return an ArrayList containing all the PlayingCard objects in the deck.
+   */
   public ArrayList<PlayingCard> getFullDeck(){
     return this.fullDeck;
   }
-
 }
