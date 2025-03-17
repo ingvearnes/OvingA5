@@ -55,13 +55,6 @@ public class HelloApplication extends Application {
 
 
         //Card-deck
-//        Text cardDeckText = new Text("Cards Coming...");
-//        cardDeckText.setX(225);
-//        cardDeckText.setY(200);
-//        cardDeckText.setFont(Font.font("Verdana",25));
-//        cardDeckText.setFill(Color.WHITE);
-//        root.getChildren().add(cardDeckText);
-
         Button buttonDeal = new Button("Deal cards!");
         buttonDeal.setLayoutX(700);
         buttonDeal.setLayoutY(200);
@@ -98,67 +91,67 @@ public class HelloApplication extends Application {
         root.getChildren().add(buttonDeal);
 
 
-        //analasys
-        Text textAnalFlush = new Text("Flush: ");
-        textAnalFlush.setX(40);
-        textAnalFlush.setY(500);
-        textAnalFlush.setFont(Font.font("Verdana",15));
-        textAnalFlush.setFill(Color.BLACK);
-        root.getChildren().add(textAnalFlush);
-        Text analFlush = new Text("Flush");
-        analFlush.setX(100);
-        analFlush.setY(500);
-        analFlush.setFont(Font.font("Verdana",15));
-        analFlush.setFill(Color.BLACK);
-        root.getChildren().add(analFlush);
+        //analysis
+        Text textAnalysisFlush = new Text("Flush: ");
+        textAnalysisFlush.setX(40);
+        textAnalysisFlush.setY(500);
+        textAnalysisFlush.setFont(Font.font("Verdana",15));
+        textAnalysisFlush.setFill(Color.BLACK);
+        root.getChildren().add(textAnalysisFlush);
+        Text analysisFlush = new Text("Flush");
+        analysisFlush.setX(100);
+        analysisFlush.setY(500);
+        analysisFlush.setFont(Font.font("Verdana",15));
+        analysisFlush.setFill(Color.BLACK);
+        root.getChildren().add(analysisFlush);
 
-        Text textAnalQueen = new Text("Queen of Cards:");
-        textAnalQueen.setX(300);
-        textAnalQueen.setY(500);
-        textAnalQueen.setFont(Font.font("Verdana",15));
-        textAnalQueen.setFill(Color.BLACK);
-        root.getChildren().add(textAnalQueen);
-        Text analQueen = new Text("Queen of Cards");
-        analQueen.setX(430);
-        analQueen.setY(500);
-        analQueen.setFont(Font.font("Verdana",15));
-        analQueen.setFill(Color.BLACK);
-        root.getChildren().add(analQueen);
+        Text textAnalysisQueen = new Text("Queen of Cards:");
+        textAnalysisQueen.setX(300);
+        textAnalysisQueen.setY(500);
+        textAnalysisQueen.setFont(Font.font("Verdana",15));
+        textAnalysisQueen.setFill(Color.BLACK);
+        root.getChildren().add(textAnalysisQueen);
+        Text analysisQueen = new Text("Queen of Cards");
+        analysisQueen.setX(430);
+        analysisQueen.setY(500);
+        analysisQueen.setFont(Font.font("Verdana",15));
+        analysisQueen.setFill(Color.BLACK);
+        root.getChildren().add(analysisQueen);
 
-        Text textAnalHearts = new Text("Hearts:");
-        textAnalHearts.setX(40);
-        textAnalHearts.setY(530);
-        textAnalHearts.setFont(Font.font("Verdana",15));
-        textAnalHearts.setFill(Color.BLACK);
-        root.getChildren().add(textAnalHearts);
-        Text analHearts = new Text("Hearts");
-        analHearts.setX(100);
-        analHearts.setY(530);
-        analHearts.setFont(Font.font("Verdana",15));
-        analHearts.setFill(Color.BLACK);
-        root.getChildren().add(analHearts);
+        Text textAnalysisHearts = new Text("Hearts:");
+        textAnalysisHearts.setX(40);
+        textAnalysisHearts.setY(530);
+        textAnalysisHearts.setFont(Font.font("Verdana",15));
+        textAnalysisHearts.setFill(Color.BLACK);
+        root.getChildren().add(textAnalysisHearts);
+        Text analysisHearts = new Text("Hearts");
+        analysisHearts.setX(100);
+        analysisHearts.setY(530);
+        analysisHearts.setFont(Font.font("Verdana",15));
+        analysisHearts.setFill(Color.BLACK);
+        root.getChildren().add(analysisHearts);
 
-        Text textAnalSumFace = new Text("Sum of faces: ");
-        textAnalSumFace.setX(300);
-        textAnalSumFace.setY(530);
-        textAnalSumFace.setFont(Font.font("Verdana",15));
-        textAnalSumFace.setFill(Color.BLACK);
-        root.getChildren().add(textAnalSumFace);
-        Text analSumFace = new Text("Sum");
-        analSumFace.setX(415);
-        analSumFace.setY(530);
-        analSumFace.setFont(Font.font("Verdana",15));
-        analSumFace.setFill(Color.BLACK);
-        root.getChildren().add(analSumFace);
+        Text textAnalysisSumFace = new Text("Sum of faces: ");
+        textAnalysisSumFace.setX(300);
+        textAnalysisSumFace.setY(530);
+        textAnalysisSumFace.setFont(Font.font("Verdana",15));
+        textAnalysisSumFace.setFill(Color.BLACK);
+        root.getChildren().add(textAnalysisSumFace);
+        Text analysisSumFace = new Text("Sum");
+        analysisSumFace.setX(415);
+        analysisSumFace.setY(530);
+        analysisSumFace.setFont(Font.font("Verdana",15));
+        analysisSumFace.setFill(Color.BLACK);
+        root.getChildren().add(analysisSumFace);
 
         Button analyzeButton = new Button("Analyze the hand");
         analyzeButton.setLayoutX(700);
         analyzeButton.setLayoutY(250);
         analyzeButton.setOnAction(event -> {
-            analFlush.setText(this.flush);
-            analQueen.setText(this.queen);
-            analHearts.setText(this.hearts);
-            analSumFace.setText(this.sumCard);
+            analysisFlush.setText(this.flush);
+            analysisQueen.setText(this.queen);
+            analysisHearts.setText(this.hearts);
+            analysisSumFace.setText(this.sumCard);
         });
         root.getChildren().add(analyzeButton);
 

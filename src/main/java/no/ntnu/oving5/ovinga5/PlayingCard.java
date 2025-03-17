@@ -1,9 +1,8 @@
 package no.ntnu.oving5.ovinga5;
 
 /**
- * Represents a playing card. A playing card has a number (face) between
- * 1 and 13, where 1 is called an Ace, 11 = Jack, 12 = Queen and 13 = King.
- * The card can also be one of 4 suits: Spades, Hearts, Diamonds, and Clubs.
+ * Represents a playing card, with a face between 1 and 13.
+ * The card is also one of 4 suits: Spades, Hearts, Diamonds, and Clubs.
  */
 public class PlayingCard {
 
@@ -13,14 +12,8 @@ public class PlayingCard {
 
   /**
    * Creates an instance of a PlayingCard with a given suit and face.
-   * The face value is an integer between 1 and 13, where 11 represents the jack,
-   * 12 represents the queen, and 13 represents the king. The Ace is represented by the
-   * number 1.
    *
-   * <p>If the suit or face are invalid, an {@code IllegalArgumentException} is thrown.</p>
-   *
-   * @param suit The suit of the card, as a single character. 'S' for Spades,
-   *             'H' for Hearts, 'D' for Diamonds, and 'C' for Clubs.
+   * @param suit The suit of the card, as a single character H, D, C or S-
    * @param face The face value of the card, an integer between 1 and 13.
    * @throws IllegalArgumentException if suit or face have invalid values.
    */
@@ -40,13 +33,10 @@ public class PlayingCard {
 
   /**
    * Generates the file path for the image representing the card.
-   * The path is based on the suit and face value of the card.
-   * For example, "ace_of_hearts.png" or "jack_of_clubs.png".
    *
-   * @param suit The suit of the card ('H' for Hearts, 'D' for Diamonds,
-   *             'C' for Clubs, 'S' for Spades).
+   * @param suit The suit of the card
    * @param face The face value of the card (1 to 13).
-   * @return The file path for the image of the card as a string.
+   * @return File path for the image of the card as a string.
    */
   public String generateCardImage(char suit, int face) {
     String suitString = "";
@@ -80,8 +70,7 @@ public class PlayingCard {
   }
 
   /**
-   * Returns a string representation of the card in the format:
-   * suit followed by the face value. For example, "H4" for the 4 of Hearts.
+   * Returns a string representation of the card
    *
    * @return the suit and face of the card as a string.
    */
@@ -101,8 +90,7 @@ public class PlayingCard {
 
   /**
    * Returns the face value of the card.
-   * This is an integer between 1 and 13 where 1 is Ace, 11 is Jack,
-   * 12 is Queen, and 13 is King.
+   * An integer between 1 and 13
    *
    * @return the face value of the card as an integer.
    */
@@ -112,10 +100,8 @@ public class PlayingCard {
 
   /**
    * Compares this card with another object for equality.
-   * Two PlayingCard objects are considered equal if they have the same suit
-   * and face value.
    *
-   * @param o the object to compare this card to.
+   * @param o the object to compare card with.
    * @return true if the cards are the same suit and face, false otherwise.
    */
   @Override
@@ -144,9 +130,7 @@ public class PlayingCard {
   }
 
   /**
-   * Returns a string representation of the card.
-   * The string consists of the suit character followed by the face value.
-   * For example, "H4" for the 4 of Hearts.
+   * The toString method, to override the point-adresse
    *
    * @return the string representation of the card.
    */
