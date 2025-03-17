@@ -18,7 +18,6 @@ public class DeckOfCards {
 
   /**
    * Constructor of class. Initializes the deck of cards by adding a full set of 52 cards.
-   * Each card is represented by a combination of suit (Spades, Hearts, Diamonds, Clubs) and rank (1-13).
    */
   public DeckOfCards(){
     fullDeck = new ArrayList<>();
@@ -65,9 +64,8 @@ public class DeckOfCards {
 
   /**
    * Method to check and return all the hearts cards present in the given hand.
-   * It filters the cards to only include hearts and returns them as a string.
    *
-   * @param cardCollection the collection of cards to check.
+   * @param cardCollection collection of cards to check.
    * @return a string representation of the cards that are hearts.
    */
   public String checkHearts(Collection<PlayingCard> cardCollection){
@@ -78,15 +76,13 @@ public class DeckOfCards {
   }
 
   /**
-   * Method to check if the given hand contains a flush, which is a set of five cards
-   * that each have a different face value from 1 to 5.
-   * This method uses an AI-based approach to check if the hand has a sequence of 5 different face values.
+   * Method to check if the given hand contains a flush
    *
    * @param cardCollection the collection of cards to check.
    * @return true if the hand is a flush, otherwise false.
    */
   public boolean checkFlush(Collection<PlayingCard> cardCollection) {
-    // AI-based check for a flush (5 consecutive face values: 1, 2, 3, 4, 5)
+    // AI-assisted: check for a flush (5 consecutive face values: 1, 2, 3, 4, 5)
     Map<Integer,Long> faceCount = cardCollection.stream()
         .collect(Collectors.groupingBy(PlayingCard::getFace, Collectors.counting()));
 
@@ -99,7 +95,6 @@ public class DeckOfCards {
 
   /**
    * Method to check if a hand contains five cards from the same suit.
-   * This checks if there are five hearts, spades, diamonds, or clubs in the collection of cards.
    *
    * @param cardCollection the collection of cards to check.
    * @return true if the hand contains five cards of the same suit, otherwise false.
@@ -126,7 +121,6 @@ public class DeckOfCards {
 
   /**
    * Method to calculate the sum of the face values of the cards in the given hand.
-   * The face values of cards are added together and the sum is returned as a string.
    *
    * @param cardCollection the collection of cards to sum.
    * @return a string representation of the sum of the face values of the cards in the collection.
